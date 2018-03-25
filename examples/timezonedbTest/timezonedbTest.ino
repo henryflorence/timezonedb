@@ -7,6 +7,8 @@ WiFiClient client;
 const char* ssid     = "---your-ssid---";
 const char* password = "---your-password---";
 
+const char* timezonedbAPIkey = "---your api key---";
+const char* timezonedbLocation = "Europe/London";
 
 void setup() {
   Serial.begin(115200);
