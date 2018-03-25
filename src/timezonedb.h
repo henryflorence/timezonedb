@@ -6,7 +6,7 @@
 #include <ESP8266WiFi.h>
 #include <ArduinoJson.h>
 
-const char* server = "api.timezonedb.com";
+const char* timezonedbServer = "api.timezonedb.com";
 const char* timezonedbGetURLFormat = "http://api.timezonedb.com/v2/get-time-zone?key=%s&format=json&by=zone&zone=%s&fields=gmtOffset";
 const char* timezonedbGetTimezoneInfoURLFormat = "http://api.timezonedb.com/v2/get-time-zone?key=%s&format=json&by=zone&zone=%s";
 const char* timezonedbGetTimezoneDstURLFormat = "http://api.timezonedb.com/v2/get-time-zone?key=%s&format=json&by=zone&zone=%s&fields=dst,dstStart,dstEnd,gmtOffset";
@@ -56,7 +56,7 @@ bool sendRequest( const char* host, const char* getURL )
   client.print( "GET " );
   client.print( getURL );
   client.print( " HTTP/1.1\r\nHost: " );
-  client.print( server );
+  client.print( timezonedbServer );
   client.print( "\r\nConnection: close\r\n\r\n" );
 
 #ifdef debug
@@ -186,11 +186,11 @@ void printUserData( const struct UserData* userData )
 
 void getTimezone( long *gmtOffset )
 {
-  if( ! httpConnect( server ) )
+  if( ! httpConnect( timezonedbServer ) )
     return;
 
   sprintf( getURL, timezonedbGetURLFormat, timezonedbAPIkey, timezonedbLocation );
-  if( sendRequest( server, getURL ) && skipResponseHeaders() )
+  if( sendRequest( timezonedbServer, getURL ) && skipResponseHeaders() )
   {
     char response[ MAX_CONTENT_SIZE ];
     readReponseContent( response, MAX_CONTENT_SIZE );
@@ -207,11 +207,11 @@ void getTimezone( long *gmtOffset )
 
 void getTimezoneInfo() 
 {
-  if( ! httpConnect( server ) )
+  if( ! httpConnect( timezonedbServer ) )
     return;
 
   sprintf( getURL, timezonedbGetTimezoneInfoURLFormat, timezonedbAPIkey, timezonedbLocation );
-  if( sendRequest( server, getURL ) && skipResponseHeaders() )
+  if( sendRequest( timezonedbServer, getURL ) && skipResponseHeaders() )
   {
     char response[ MAX_CONTENT_SIZE ];
     readReponseContent( response, MAX_CONTENT_SIZE );
@@ -228,11 +228,11 @@ void getTimezoneInfo()
 
 boolean getTimezoneDst(boolean *dst, long *dstStart, long *dstEnd, long *gmtOffset) 
 {
-  if( ! httpConnect( server ) )
+  if( ! httpConnect( timezonedbServer ) )
     return false;
 
   sprintf( getURL, timezonedbGetTimezoneDstURLFormat, timezonedbAPIkey, timezonedbLocation );
-  if( sendRequest( server, getURL ) && skipResponseHeaders() )
+  if( sendRequest( timezonedbServer, getURL ) && skipResponseHeaders() )
   {
     char response[ MAX_CONTENT_SIZE ];
     readReponseContent( response, MAX_CONTENT_SIZE );
