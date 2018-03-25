@@ -11,8 +11,8 @@ const char* timezonedbGetURLFormat = "http://api.timezonedb.com/v2/get-time-zone
 const char* timezonedbGetTimezoneInfoURLFormat = "http://api.timezonedb.com/v2/get-time-zone?key=%s&format=json&by=zone&zone=%s";
 const char* timezonedbGetTimezoneDstURLFormat = "http://api.timezonedb.com/v2/get-time-zone?key=%s&format=json&by=zone&zone=%s&fields=dst,dstStart,dstEnd,gmtOffset";
 
-const char* timezonedbAPIkey = "57J1MAM4QACH";
-char* timezonedbLocation = "Europe/London";
+//char* timezonedbAPIkey = "---your api key---";
+//char* timezonedbLocation = "Europe/London";
 
 char getURL[ 115 ];
 const unsigned long HTTP_TIMEOUT = 10000;
