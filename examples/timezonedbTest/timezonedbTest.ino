@@ -4,8 +4,8 @@ WiFiClient client;
 
 #include "timezonedb.h"
 
-const char* ssid     = "internet -2g";
-const char* password = "60Hewittav";
+const char* ssid     = "---your-ssid---";
+const char* password = "---your-password---";
 
 
 void setup() {
